@@ -1,6 +1,9 @@
 extern crate glfw;
 extern crate gl;
 
+
+mod shader;
+
 use std::ffi::CStr;
 use glfw::{Action, Context, Key};
 
@@ -21,6 +24,10 @@ fn main() {
     };
 
     println!("OpenGL version {}", version);
+    
+    let s = shader::Shader{};
+    s.build();
+ 
 
     while !window.should_close() {
         glfw.poll_events();
