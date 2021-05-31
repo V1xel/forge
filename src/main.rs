@@ -1,6 +1,7 @@
 extern crate glfw;
 extern crate gl;
 
+use std::ffi::CStr;
 use glfw::{Action, Context, Key};
 
 fn main() {
@@ -11,6 +12,15 @@ fn main() {
 
     window.set_key_polling(true);
     window.make_current();
+    
+    gl::load_with(|symbol| window.get_proc_address(symbol) as *const _);
+
+    let version = unsafe {
+        let data = CStr::from_ptr(gl::GetString(gl::VERSION) as *const _).to_bytes().to_vec();
+        String::from_utf8(data).unwrap()
+    };
+
+    println!("OpenGL version {}", version);
 
     while !window.should_close() {
         glfw.poll_events();
