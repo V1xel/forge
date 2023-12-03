@@ -1,5 +1,5 @@
 import ReactFlow, { Background, BackgroundVariant } from 'reactflow'
-import { useFlowStore } from './state/store'
+import { useFlowStore } from './state/flowStore'
 
 function App() {
   return (
