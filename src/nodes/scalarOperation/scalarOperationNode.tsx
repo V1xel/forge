@@ -1,6 +1,6 @@
 import { ComponentType, useEffect, useState } from "react"
 import { Card } from "react-bootstrap"
-import { NodeData, useStore } from '../../state/store'
+import { NodeData } from '../../state/store'
 import { Scalar } from "../../domain/scalar/scalar"
 import { IValueType, ValueType } from "../../domain/valueType"
 import { NodeProps } from "reactflow"

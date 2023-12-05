@@ -1,6 +1,6 @@
 import { CombineVector3Node } from "../nodes/combineVector3/combineVector3Node"
 import { ScalarNode } from "../nodes/scalarNode/scalarNode"
-import { ScalarOperationNode } from "../nodes/scalarOperationNode/scalarOperationNode"
+import { ScalarOperationNode } from "../nodes/scalarOperation/scalarOperationNode"
 import { SeparateVector3Node } from "../nodes/separateVector3/separateVector3Node"
 import { StoreFields } from "./store"
 
