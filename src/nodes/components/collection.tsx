@@ -5,14 +5,15 @@ import { Output } from "./output"
 
 interface InputCollectionProps {
     nodeId: string,
-    elements: { type: (DataType | ValueType), hideHandle: boolean, onChange: (value: IValueType) => void }[]
+    top: number,
+    elements: { title: string, type: (DataType | ValueType), hideHandle: boolean, onChange: (value: IValueType) => void }[]
 }
 
-export const InputCollection = ({ elements, nodeId }: InputCollectionProps) => {
+export const InputCollection = ({ elements, nodeId, top }: InputCollectionProps) => {
     const inputs = []
     for (let index = 0; index < elements.length; index++) {
-        const { type, onChange, hideHandle } = elements[index]
-        inputs.push(<Input key={index} hideHandle={hideHandle} inputId={index} nodeId={nodeId} onChange={(value) => onChange(value)} type={type} />)
+        const { title, type, onChange, hideHandle } = elements[index]
+        inputs.push(<Input top={top} key={index} title={title} hideHandle={hideHandle} inputId={index} nodeId={nodeId} onChange={(value) => onChange(value)} type={type} />)
     }
 
     return inputs

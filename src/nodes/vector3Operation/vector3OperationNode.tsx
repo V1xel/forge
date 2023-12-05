@@ -33,9 +33,9 @@ export const Vector3OperationNode: ComponentType<NodeProps<NodeData>> = ({ id })
                     ]}
                 />
                 <Select onChange={setOperationType} enumType={Vector3OperationType} />
-                <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Vector3, hideHandle: false, onChange: setInputA },
-                    { type: ValueType.Vector3, hideHandle: false, onChange: setInputB }
+                <InputCollection top={152} nodeId={id} elements={[
+                    { title: 'Vector', type: ValueType.Vector3, hideHandle: false, onChange: setInputA },
+                    { title: 'Vector', type: ValueType.Vector3, hideHandle: false, onChange: setInputB }
                 ]} />
             </Card.Body>
         </Card>

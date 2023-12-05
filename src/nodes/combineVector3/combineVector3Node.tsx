@@ -27,10 +27,10 @@ export const CombineVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) =
                         { title: 'Result', type: ValueType.Scalar, result: combine.getResult() },
                     ]}
                 />
-                <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputX },
-                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputY },
-                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputZ }
+                <InputCollection top={115} nodeId={id} elements={[
+                    { title: 'x', type: ValueType.Scalar, hideHandle: false, onChange: setInputX },
+                    { title: 'y', type: ValueType.Scalar, hideHandle: false, onChange: setInputY },
+                    { title: 'z', type: ValueType.Scalar, hideHandle: false, onChange: setInputZ }
                 ]} />
             </Card.Body>
         </Card>

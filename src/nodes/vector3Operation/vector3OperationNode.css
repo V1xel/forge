@@ -1,5 +1,6 @@
 .vector3-operation-node {
-    width: 280;
+    width: 280px;
+    min-height: 250px;
 }
 
 .vector3-operation-node .vector3-operation-header {

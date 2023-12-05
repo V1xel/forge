@@ -6,3 +6,19 @@ body {
   min-height: 100vh;
   background-color:#1a1a1a;
 }
+
+.react-flow__handle {
+  background-color: 'white';
+  width: 12px;
+  height: 12px;
+}
+
+.react-flow__edge-path{
+  stroke-width: 3;
+  stroke: #3c3c83;
+} 
+
+.react-flow__connection-path{
+  stroke-width: 3;
+  stroke: white;
+}

@@ -21,8 +21,8 @@ export const ScalarNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
                         { title: 'Value', type: ValueType.Scalar, result: scalar },
                     ]}
                 />
-                <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Scalar, hideHandle: true, onChange: setInput }
+                <InputCollection top={0} nodeId={id} elements={[
+                    { title:'s', type: ValueType.Scalar, hideHandle: true, onChange: setInput }
                 ]} />
             </Card.Body>
         </Card>

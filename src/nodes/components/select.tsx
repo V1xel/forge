@@ -7,7 +7,7 @@ export interface ISelectProps {
 
 export const Select = ({ enumType, onChange }: ISelectProps) => {
     const enumValues = Object.entries(enumType);
-    return <Form.Select onChange={(e) => { onChange(e.target.value) }}>
+    return <Form.Select className="mb-1" onChange={(e) => { onChange(e.target.value) }}>
         {enumValues.map((ev) => <option key={ev[1] as string} value={ev[1] as string}>{ev[0]}</option>)}
     </Form.Select>
 }

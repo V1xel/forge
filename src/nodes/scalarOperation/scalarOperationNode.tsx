@@ -33,9 +33,9 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
                     ]}
                 />
                 <Select onChange={setOperationType} enumType={ScalarOperationType} />
-                <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputA },
-                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputB }
+                <InputCollection top={157} nodeId={id} elements={[
+                    { title:'s', type: ValueType.Scalar, hideHandle: false, onChange: setInputA },
+                    { title:'s', type: ValueType.Scalar, hideHandle: false, onChange: setInputB }
                 ]} />
             </Card.Body>
         </Card>

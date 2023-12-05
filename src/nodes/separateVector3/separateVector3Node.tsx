@@ -19,12 +19,12 @@ export const SeparateVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) 
             <Card.Header className="separate-vector3-node-header">Separate Vector3</Card.Header>
             <Card.Body>
                 <OutputCollection nodeId={id} elements={[
-                    { title: 'X', type: ValueType.Scalar, result: result.x },
-                    { title: 'Y', type: ValueType.Scalar, result: result.y },
-                    { title: 'Z', type: ValueType.Scalar, result: result.z },
+                    { title: 'x', type: ValueType.Scalar, result: result.x },
+                    { title: 'y', type: ValueType.Scalar, result: result.y },
+                    { title: 'z', type: ValueType.Scalar, result: result.z },
                 ]} />
-                <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Vector3, hideHandle: false, onChange: setInputVector3 },
+                <InputCollection top={190} nodeId={id} elements={[
+                    { title: 'Vector', type: ValueType.Vector3, hideHandle: false, onChange: setInputVector3 },
                 ]} />
             </Card.Body>
         </Card>
