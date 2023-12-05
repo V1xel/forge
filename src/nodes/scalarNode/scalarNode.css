@@ -2,6 +2,6 @@
     width: 280;
 }
 
-.scalar-node-header {
-    background-color: '#83314A'
+.scalar-node .scalar-node-header {
+    background-color: #83314A
 }

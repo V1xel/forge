@@ -5,9 +5,9 @@ import { Scalar } from "../../domain/scalar/scalar"
 import { IValueType, ValueType } from "../../domain/valueType"
 import { NodeProps } from "reactflow"
 import { InputCollection, OutputCollection } from "../components/collection"
-import { ScalarOperationType } from "../../domain/scalar/scalarOperation"
 import { Select } from "../components/select"
 import { Vector3Operation, Vector3OperationType } from "../../domain/vector/vectorOperation"
+import './vector3OperationNode.css'
 
 export const Vector3OperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [vector3A, setVector3A] = useState(new Scalar(0) as IValueType)
@@ -23,8 +23,8 @@ export const Vector3OperationNode: ComponentType<NodeProps<NodeData>> = ({ id })
     const setOperationType = (value: string) => { setType(value as Vector3OperationType) }
 
     return (
-        <Card data-bs-theme={'dark'} className="scalar-node">
-            <Card.Header className="scalar-node-header">Vector3 Operation</Card.Header>
+        <Card data-bs-theme={'dark'} className="vector3-operation-node">
+            <Card.Header className="vector3-operation-header">Vector3 Operation</Card.Header>
             <Card.Body>
                 <OutputCollection
                     nodeId={id}

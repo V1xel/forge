@@ -6,6 +6,7 @@ import { NodeProps } from "reactflow"
 import { InputCollection, OutputCollection } from "../components/collection"
 import { Vector3 } from "../../domain/vector/vector3"
 import { SeparateVector3 } from "../../domain/vector/separateVector3"
+import './separateVector3Node.css'
 
 export const SeparateVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [vector3, setVector3] = useState(new Vector3(0, 0, 0) as IValueType)
@@ -14,8 +15,8 @@ export const SeparateVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) 
 
     const setInputVector3 = (value: IValueType) => { setVector3(value) }
     return (
-        <Card data-bs-theme={'dark'} className="scalar-node">
-            <Card.Header className="scalar-node-header">Separate Vector3</Card.Header>
+        <Card data-bs-theme={'dark'} className="separate-vector3-node">
+            <Card.Header className="separate-vector3-node-header">Separate Vector3</Card.Header>
             <Card.Body>
                 <OutputCollection nodeId={id} elements={[
                     { title: 'X', type: ValueType.Scalar, result: result.x },

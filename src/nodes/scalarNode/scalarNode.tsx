@@ -5,6 +5,7 @@ import { Scalar } from "../../domain/scalar/scalar"
 import { IValueType, ValueType } from "../../domain/valueType"
 import { NodeProps } from "reactflow"
 import { InputCollection, OutputCollection } from "../components/collection"
+import './scalarNode.css'
 
 export const ScalarNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [scalar, setScalar] = useState(new Scalar(0) as IValueType)

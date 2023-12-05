@@ -1,0 +1,7 @@
+.scalar-operation-node {
+    width: 280;
+}
+
+.scalar-operation-node .scalar-operation-header {
+    background-color: rgb(49, 91, 131)
+}

@@ -6,6 +6,7 @@ import { IValueType, ValueType } from "../../domain/valueType"
 import { NodeProps } from "reactflow"
 import { InputCollection, OutputCollection } from "../components/collection"
 import { CombineVector3 } from "../../domain/vector/combineVector3"
+import './combineVector3Node.css'
 
 export const CombineVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [x, setX] = useState(new Scalar(0) as IValueType)
@@ -17,8 +18,8 @@ export const CombineVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) =
     const setInputY = (value: IValueType) => { setY(value) }
     const setInputZ = (value: IValueType) => { setZ(value) }
     return (
-        <Card data-bs-theme={'dark'} className="scalar-node">
-            <Card.Header className="scalar-node-header">Combine Vector3</Card.Header>
+        <Card data-bs-theme={'dark'} className="combine-vector3-node">
+            <Card.Header className="combine-vector3-node-header">Combine Vector3</Card.Header>
             <Card.Body>
                 <OutputCollection
                     nodeId={id}

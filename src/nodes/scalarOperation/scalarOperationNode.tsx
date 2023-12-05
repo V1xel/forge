@@ -7,6 +7,7 @@ import { NodeProps } from "reactflow"
 import { InputCollection, OutputCollection } from "../components/collection"
 import { ScalarOperation, ScalarOperationType } from "../../domain/scalar/scalarOperation"
 import { Select } from "../components/select"
+import './scalarOperationNode.css'
 
 export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [scalarA, setScalarA] = useState(new Scalar(0) as IValueType)
@@ -22,8 +23,8 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
     const setOperationType = (value: string) => { setType(value as ScalarOperationType) }
 
     return (
-        <Card data-bs-theme={'dark'} className="scalar-node">
-            <Card.Header className="scalar-node-header">Scalar Operation</Card.Header>
+        <Card data-bs-theme={'dark'} className="scalar-operation-node">
+            <Card.Header className="scalar-operation-header">Scalar Operation</Card.Header>
             <Card.Body>
                 <OutputCollection
                     nodeId={id}
