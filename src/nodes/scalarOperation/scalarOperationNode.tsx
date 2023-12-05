@@ -19,7 +19,7 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
 
     const setInputA = (value: IValueType) => { setScalarA(value) }
     const setInputB = (value: IValueType) => { setScalarB(value) }
-    const setMode = (value: string) => { setType(value as ScalarOperationType) }
+    const setOperationType = (value: string) => { setType(value as ScalarOperationType) }
 
     return (
         <Card data-bs-theme={'dark'} className="scalar-node">
@@ -31,7 +31,7 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
                         { title: 'Result', type: ValueType.Scalar, result: result },
                     ]}
                 />
-                <Select onChange={setMode} enumType={ScalarOperationType} />
+                <Select onChange={setOperationType} enumType={ScalarOperationType} />
                 <InputCollection nodeId={id} elements={[
                     { type: ValueType.Scalar, hideHandle: false, onChange: setInputA },
                     { type: ValueType.Scalar, hideHandle: false, onChange: setInputB }
