@@ -3,10 +3,17 @@ import { IValueType } from "../valueType";
 import { Vector3 } from "../vector/vector3";
 
 export class Scalar implements IValueType {
-    constructor(private _scalar: number) { }
+    private _scalar: number
+    constructor(scalar: number | string) {
+        this._scalar = Number(scalar)
+    }
 
     getType(): DataType {
         return DataType.ValueType
+    }
+
+    public getValue(): number {
+        return this._scalar;
     }
 
     public getVector() {
