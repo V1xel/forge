@@ -1,7 +1,7 @@
 import { Scalar } from "../scalar/scalar";
 import { IValueType } from "../valueType";
 
-export class SepparateVector3 {
+export class SeparateVector3 {
     constructor(private vector: IValueType) { }
 
     public getResult(): { x: IValueType, y: IValueType, z: IValueType } {

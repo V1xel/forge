@@ -17,7 +17,7 @@ export const ScalarNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
                 <OutputCollection
                     nodeId={id}
                     elements={[
-                        { type: ValueType.Scalar, result: scalar },
+                        { title: 'Value', type: ValueType.Scalar, result: scalar },
                     ]}
                 />
                 <InputCollection nodeId={id} elements={[

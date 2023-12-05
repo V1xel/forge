@@ -15,20 +15,21 @@ const handleStyleMap = {
 interface OutputProps {
     nodeId: string,
     type: DataType | ValueType,
-    outputId: string,
+    outputId: number,
+    title: string,
     result: IDataType,
 }
-export const Output = ({ nodeId, outputId, type, result }: OutputProps) => {
+export const Output = ({ nodeId, outputId, type, title, result }: OutputProps) => {
     const { onNodeOutput } = useStore()
 
     useEffect(() => {
-        onNodeOutput({ nodeId, outputId, data: result })
+        onNodeOutput({ nodeId, outputId: outputId.toString(), data: result })
     }, [nodeId, outputId, result])
 
     return (
         <>
-            <Card.Text className="text-end">Value</Card.Text>
-            <Handle id={`nodeId:${nodeId}-outputId:${outputId}`} className={handleStyleMap[type]} position={Position.Right} type="source" />
+            <Card.Text className="text-end">{title}</Card.Text>
+            <Handle id={`nodeId:${nodeId}-outputId:${outputId}`} style={{ top: 70 + outputId * 39 }} className={handleStyleMap[type]} position={Position.Right} type="source" />
         </>
     )
 }

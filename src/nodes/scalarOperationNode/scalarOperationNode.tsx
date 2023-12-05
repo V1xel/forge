@@ -15,12 +15,10 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
     const [result, setResult] = useState(new Scalar(0) as IValueType)
 
     const scalarOperation = new ScalarOperation(scalarA, scalarB, type)
-
     useEffect(() => { setResult(scalarOperation.getResult()) }, [scalarA, scalarB, type])
 
     const setInputA = (value: IValueType) => { setScalarA(value) }
     const setInputB = (value: IValueType) => { setScalarB(value) }
-
     const setMode = (value: string) => { setType(value as ScalarOperationType) }
 
     return (
@@ -30,7 +28,7 @@ export const ScalarOperationNode: ComponentType<NodeProps<NodeData>> = ({ id }) 
                 <OutputCollection
                     nodeId={id}
                     elements={[
-                        { type: ValueType.Scalar, result: result },
+                        { title: 'Result', type: ValueType.Scalar, result: result },
                     ]}
                 />
                 <Select onChange={setMode} enumType={ScalarOperationType} />

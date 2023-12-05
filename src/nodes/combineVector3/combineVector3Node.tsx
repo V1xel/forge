@@ -23,7 +23,7 @@ export const CombineVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) =
                 <OutputCollection
                     nodeId={id}
                     elements={[
-                        { type: ValueType.Scalar, result: combine.getResult() },
+                        { title: 'Result', type: ValueType.Scalar, result: combine.getResult() },
                     ]}
                 />
                 <InputCollection nodeId={id} elements={[
