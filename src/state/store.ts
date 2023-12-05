@@ -33,13 +33,13 @@ export const useStore = create<Store>((set, get) => ({
             nodes: StoreHelper.updateNodeDataSourceNodes(connection, nodes)
         });
     },
-    onNodeOutput: (result: Output) => {
+    onNodeOutput: (output: Output) => {
         const { nodeOutputs } = get()
         if (!nodeOutputs)
             return
 
         set({
-            nodeOutputs: StoreHelper.addResult(result, nodeOutputs)
+            nodeOutputs: StoreHelper.addOutput(output, nodeOutputs)
         })
     }
 }));

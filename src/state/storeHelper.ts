@@ -28,7 +28,7 @@ export class StoreHelper {
         })
     }
 
-    public static addResult(output: Output, nodeOutputs: Dictionary<Data>): Dictionary<Data> {
+    public static addOutput(output: Output, nodeOutputs: Dictionary<Data>): Dictionary<Data> {
         return { ...nodeOutputs, [`nodeId:${output.nodeId}-outputId:${output.outputId}`]: new Data(output.data) }
     }
 }
