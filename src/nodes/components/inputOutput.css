@@ -1,0 +1,26 @@
+.handle {
+    background-color: 'white';
+    width: "12px";
+    height: "12px";
+}
+
+.scalar-handle {
+    background-color: 'yellow';
+}
+
+.vector3-handle {
+    background-color: 'violet';
+}
+
+input {
+    height: '40px'
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

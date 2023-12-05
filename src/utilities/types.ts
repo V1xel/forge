@@ -1,0 +1,1 @@
+export type Dictionary<T> = { [Id: string]: T }

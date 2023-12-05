@@ -1,42 +1,43 @@
-import { create } from 'zustand';
-import {
-    Connection,
-    Node as ReactFlowNode,
-    ReactFlowProps,
-    addEdge
-} from 'reactflow';
+import { create } from 'zustand'
+import { Connection, Node as ReactFlowNode, ReactFlowProps } from 'reactflow'
+import { initialFields } from './storeInitialize'
+import { Result, StoreHelper } from './storeHelper'
+import { Data } from '../domain/dataType'
+import { Dictionary } from '../utilities/types'
 
-export type NodeData = {
+export type NodeData = {}
+export type Node = ReactFlowNode<NodeData>
 
-}
-
-export type Node = ReactFlowNode & {
-    data: NodeData
-}
-
-export type Store = ReactFlowProps & {
-    nodes: Node[]
+export type StoreFields = ReactFlowProps & {
+    nodes: Node[],
+    nodeResults: Dictionary<Data>,
 };
 
-const storeFields = {
-    nodes: [
-        { id: '1', position: { x: 200, y: 200 }, data: {} },
-        { id: '2', position: { x: 400, y: 200 }, data: {} },
-    ],
-    edges: [],
+type StoreMethods = {
+    onNodeResult: (result: Result) => void
 }
 
+type Store = StoreMethods & StoreFields
 export const useStore = create<Store>((set, get) => ({
-    ...storeFields,
+    ...initialFields,
     onConnect: (connection: Connection) => {
-        const { edges } = get();
+        const { edges } = get()
         if (!edges)
-            return;
+            return
 
         set({
-            edges: addEdge(connection, edges)
+            edges: StoreHelper.addEdge(connection, edges)
         });
     },
+    onNodeResult: (result: Result) => {
+        const { nodeResults } = get()
+        if (!nodeResults)
+            return
+
+        set({
+            nodeResults: StoreHelper.addResult(result, nodeResults)
+        })
+
+        console.log(get().nodeResults)
+    }
 }));
-
-
