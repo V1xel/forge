@@ -37,7 +37,7 @@ export const Input = ({ inputId, nodeId, hideHandle, type, onChange }: InputProp
 
     return (
         <>
-            <Form.Control onChange={(e) => onChange(new Scalar(e.target.value))} type="number" className="text-center" />
+            <Form.Control hidden={type !== ValueType.Scalar} onChange={(e) => onChange(new Scalar(e.target.value))} type="number" className="text-center" />
             <Handle hidden={hideHandle} id={MakeInputId(nodeId, inputId)} style={{ top: 115 + inputId * 38 }} className={handleStyleMap[type]} position={Position.Left} type="target" />
         </>
     )
