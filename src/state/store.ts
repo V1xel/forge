@@ -1,23 +1,23 @@
 import { create } from 'zustand'
 import { Connection, Node as ReactFlowNode, ReactFlowProps } from 'reactflow'
 import { initialFields } from './storeInitialize'
-import { Result, StoreHelper } from './storeHelper'
+import { Output, StoreHelper } from './storeHelper'
 import { Data } from '../domain/dataType'
 import { Dictionary } from '../utilities/types'
 
 export type NodeData = {
-    sourceNodes: Dictionary<string>
+    inputNodes: Dictionary<string>
 }
 
 export type Node = ReactFlowNode<NodeData>
 
 export type StoreFields = ReactFlowProps & {
     nodes: Node[],
-    nodeResults: Dictionary<Data>,
+    nodeOutputs: Dictionary<Data>,
 };
 
 type StoreMethods = {
-    onNodeResult: (result: Result) => void
+    onNodeOutput: (result: Output) => void
 }
 
 type Store = StoreMethods & StoreFields
@@ -33,15 +33,13 @@ export const useStore = create<Store>((set, get) => ({
             nodes: StoreHelper.updateNodeDataSourceNodes(connection, nodes)
         });
     },
-    onNodeResult: (result: Result) => {
-        const { nodeResults } = get()
-        if (!nodeResults)
+    onNodeOutput: (result: Output) => {
+        const { nodeOutputs } = get()
+        if (!nodeOutputs)
             return
 
         set({
-            nodeResults: StoreHelper.addResult(result, nodeResults)
+            nodeOutputs: StoreHelper.addResult(result, nodeOutputs)
         })
-
-        console.log(get().nodeResults)
     }
 }));

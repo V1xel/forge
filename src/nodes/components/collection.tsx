@@ -1,6 +1,7 @@
-import { DataType } from "../../domain/dataType"
+import { DataType, IDataType } from "../../domain/dataType"
 import { IValueType, ValueType } from "../../domain/valueType"
 import { Input } from "./input"
+import { Output } from "./output"
 
 interface InputCollectionProps {
     nodeId: string,
@@ -15,4 +16,19 @@ export const InputCollection = ({ elements, nodeId }: InputCollectionProps) => {
     }
 
     return inputs
+}
+
+interface OutputCollectionProps {
+    nodeId: string,
+    elements: { type: (DataType | ValueType), result: IDataType }[]
+}
+
+export const OutputCollection = ({ elements, nodeId }: OutputCollectionProps) => {
+    const outputs = []
+    for (let index = 0; index < elements.length; index++) {
+        const { type, result } = elements[index]
+        outputs.push(<Output key={index} outputId={index.toString()} nodeId={nodeId} result={result} type={type} />)
+    }
+
+    return outputs
 }

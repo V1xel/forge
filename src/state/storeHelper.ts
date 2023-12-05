@@ -3,7 +3,7 @@ import { Data, IDataType } from "../domain/dataType";
 import { Dictionary } from "../utilities/types";
 import { Node } from "./store";
 
-export type Result = { nodeId: string, data: IDataType };
+export type Output = { nodeId: string, outputId: string, data: IDataType };
 
 export class StoreHelper {
     public static addEdge(connection: Connection, edges: Edge[]): Edge[] {
@@ -18,8 +18,8 @@ export class StoreHelper {
         return nodes.map(node => {
             if (node.id === connection.target) {
                 node.data = {
-                    ...node.data, sourceNodes: {
-                        ...node.data.sourceNodes, [targetHandle]: source
+                    ...node.data, inputNodes: {
+                        ...node.data.inputNodes, [targetHandle]: sourceHandle
                     }
                 };
             }
@@ -28,7 +28,7 @@ export class StoreHelper {
         })
     }
 
-    public static addResult(result: Result, nodeResults: Dictionary<Data>): Dictionary<Data> {
-        return { ...nodeResults, [result.nodeId]: new Data(result.data) }
+    public static addResult(output: Output, nodeOutputs: Dictionary<Data>): Dictionary<Data> {
+        return { ...nodeOutputs, [`nodeId:${output.nodeId}-outputId:${output.outputId}`]: new Data(output.data) }
     }
 }

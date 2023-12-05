@@ -21,11 +21,13 @@ interface InputProps {
     hideHandle: boolean
 }
 
+const MakeInputId = (nodeId: string, inputId: number) => `nodeId:${nodeId}-inputId:${inputId}`
+
 export const Input = ({ inputId, nodeId, hideHandle, type, onChange }: InputProps) => {
     const attachedNodeValue = useStore(store => {
         const nodeData = store.nodes.find(node => node.id === nodeId) as Node
-        const attachedInputNodeId = nodeData.data.sourceNodes[`nodeId:${nodeId}-inputId:${inputId}`]
-        return store.nodeResults[attachedInputNodeId]
+        const attachedOutputNodeId = nodeData.data.inputNodes[MakeInputId(nodeId, inputId)]
+        return store.nodeOutputs[attachedOutputNodeId]
     })
 
     useEffect(() => {
@@ -36,7 +38,7 @@ export const Input = ({ inputId, nodeId, hideHandle, type, onChange }: InputProp
     return (
         <>
             <Form.Control onChange={(e) => onChange(new Scalar(e.target.value))} type="number" className="text-center" />
-            <Handle hidden={hideHandle} id={`nodeId:${nodeId}-inputId:${inputId}`} style={{ top: 115 + inputId * 38 }} className={handleStyleMap[type]} position={Position.Left} type="target" />
+            <Handle hidden={hideHandle} id={MakeInputId(nodeId, inputId)} style={{ top: 115 + inputId * 38 }} className={handleStyleMap[type]} position={Position.Left} type="target" />
         </>
     )
 }
