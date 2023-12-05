@@ -11,9 +11,9 @@ export const initialFields: StoreFields = {
     },
     nodes: [
         { id: '1', type: 'scalar', position: { x: 200, y: 200 }, data: { inputNodes: {} } },
-        //{ id: '2', type: 'scalar', position: { x: 200, y: 380 }, data: { inputNodes: {}} },
-       // { id: '3', type: 'combineVector3', position: { x: 200, y: 560 }, data: { inputNodes: {}} },
-        { id: '4', type: 'scalarOperation', position: { x: 550, y: 200 }, data: { inputNodes: {}} }
+        { id: '2', type: 'scalar', position: { x: 200, y: 380 }, data: { inputNodes: {} } },
+        { id: '3', type: 'combineVector3', position: { x: 200, y: 560 }, data: { inputNodes: {} } },
+        { id: '4', type: 'scalarOperation', position: { x: 550, y: 200 }, data: { inputNodes: {} } }
     ],
     edges: [],
     nodeOutputs: {}
