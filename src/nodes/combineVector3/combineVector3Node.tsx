@@ -22,13 +22,13 @@ export const CombineVector3Node: ComponentType<NodeProps<NodeData>> = ({ id }) =
     const setInputZ = (value: IValueType) => { setZ(value) }
     return (
         <Card data-bs-theme={'dark'} className="scalar-node">
-            <Card.Header className="scalar-node-header">Scalar</Card.Header>
+            <Card.Header className="scalar-node-header">Combine Vector3</Card.Header>
             <Card.Body>
                 <Output nodeId={id} type={ValueType.Scalar} />
                 <InputCollection nodeId={id} elements={[
-                    { type: ValueType.Scalar, hideHandle: true, onChange: setInputX },
-                    { type: ValueType.Scalar, hideHandle: true, onChange: setInputY },
-                    { type: ValueType.Scalar, hideHandle: true, onChange: setInputZ }
+                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputX },
+                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputY },
+                    { type: ValueType.Scalar, hideHandle: false, onChange: setInputZ }
                 ]} />
             </Card.Body>
         </Card>
