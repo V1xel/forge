@@ -5,7 +5,10 @@ import { Result, StoreHelper } from './storeHelper'
 import { Data } from '../domain/dataType'
 import { Dictionary } from '../utilities/types'
 
-export type NodeData = {}
+export type NodeData = {
+    sourceNodes: Dictionary<string>
+}
+
 export type Node = ReactFlowNode<NodeData>
 
 export type StoreFields = ReactFlowProps & {
@@ -21,12 +24,13 @@ type Store = StoreMethods & StoreFields
 export const useStore = create<Store>((set, get) => ({
     ...initialFields,
     onConnect: (connection: Connection) => {
-        const { edges } = get()
-        if (!edges)
+        const { edges, nodes } = get()
+        if (!edges || !nodes)
             return
 
         set({
-            edges: StoreHelper.addEdge(connection, edges)
+            edges: StoreHelper.addEdge(connection, edges),
+            nodes: StoreHelper.updateNodeDataSourceNodes(connection, nodes)
         });
     },
     onNodeResult: (result: Result) => {
