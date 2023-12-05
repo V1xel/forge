@@ -3,10 +3,26 @@ import { Scalar } from "../scalar/scalar"
 import { IValueType } from "../valueType"
 
 export class Vector3 implements IValueType {
-    constructor(private _x: number, private _y: number, private _z: number) { }
+    private _x: number
+    private _y: number
+    private _z: number
+
+    constructor(x: number | string, y: number | string, z: number | string) {
+        this._x = Number(x)
+        this._y = Number(y)
+        this._z = Number(z)
+    }
 
     getType(): DataType {
         return DataType.ValueType;
+    }
+
+    public getValue(): { x: number, y: number, z: number } {
+        return {
+            x: this._x,
+            y: this._y,
+            z: this._z,
+        };
     }
 
     public getVector() {
