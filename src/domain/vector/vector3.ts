@@ -1,6 +1,6 @@
 import { DataType } from "../dataType"
 import { Scalar } from "../scalar/scalar"
-import { IValueType } from "../valueType"
+import { IValueType, ValueType } from "../valueType"
 
 export class Vector3 implements IValueType {
     private _x: number
@@ -13,8 +13,12 @@ export class Vector3 implements IValueType {
         this._z = Number(z)
     }
 
+    getValueType(): ValueType {
+        return ValueType.Vector3
+    }
+
     getType(): DataType {
-        return DataType.ValueType;
+        return DataType.ValueType
     }
 
     public getValue(): { x: number, y: number, z: number } {
@@ -34,7 +38,7 @@ export class Vector3 implements IValueType {
     public getScalar(): Scalar {
         const { _x, _y, _z } = this
 
-        return new Scalar((_x + _y + _z) / 3);
+        return new Scalar((_x + _y + _z) / 3)
     }
 
     public toString(): string {

@@ -3,8 +3,9 @@ import { Scalar } from "./scalar/scalar";
 import { Vector3 } from "./vector/vector3";
 
 export interface IValueType extends IDataType {
-    getVector(): Vector3;
-    getScalar(): Scalar;
+    getVector(): Vector3
+    getScalar(): Scalar
+    getValueType(): ValueType
 }
 
 export enum ValueType {
