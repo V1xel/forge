@@ -7,14 +7,9 @@ export enum ScalarOperationType {
 }
 
 export class ScalarOperation {
-    private _type: ScalarOperationType = ScalarOperationType.Add
-    constructor(private _s1: IValueType, private _s2: IValueType) { }
+    constructor(private _s1: IValueType, private _s2: IValueType, private _type: ScalarOperationType) { }
 
-    public setType(type: ScalarOperationType) {
-        this._type = type;
-    }
-
-    private add(): IValueType {
+    public add(): IValueType {
         const s1 = this._s1.getScalar()
         const s2 = this._s2.getScalar()
         const result = s1.getValue() + s2.getValue();
@@ -22,7 +17,7 @@ export class ScalarOperation {
         return new Scalar(result)
     }
 
-    private multiply(): IValueType {
+    public multiply(): IValueType {
         const s1 = this._s1.getScalar()
         const s2 = this._s2.getScalar()
         const result = s1.getValue() * s2.getValue();
