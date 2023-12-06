@@ -3,8 +3,6 @@ export enum DataType {
     Geometry = 'geometry',
 }
 
-export class Geometry { }
-
 export interface IDataType {
     getType(): DataType
 }
