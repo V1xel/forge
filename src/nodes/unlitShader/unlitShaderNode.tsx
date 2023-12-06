@@ -6,7 +6,7 @@ import { NodeProps } from "reactflow"
 import { InputCollection } from "../components/collection"
 import { Vector3 } from "../../domain/vector/vector3"
 
-export const EmissionShaderNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
+export const UnlitShaderNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const [colorVector3, setColorVector3] = useState(new Vector3(0, 0, 0) as IValueType)
 
     const setInput = (value: IValueType) => { setColorVector3(value) }
