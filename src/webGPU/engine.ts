@@ -112,15 +112,13 @@ export class WebGPU {
         const modelViewProjectionMatrix = mat4.create();
         const _webGPU = this;
         function getTransformationMatrix() {
-            const now = Date.now() / 1000;
-
             const viewMatrix = mat4.identity();
-            mat4.translate(viewMatrix, vec3.fromValues(0, 0, -4), viewMatrix);
+            mat4.translate(viewMatrix, vec3.fromValues(0, 0, -1.5), viewMatrix);
 
             mat4.rotate(
                 viewMatrix,
-                vec3.fromValues(Math.cos(now), 0, Math.sin(now)),
-                1,
+                vec3.fromValues(1, 0, 0),
+                1.5708,
                 viewMatrix
             );
 
@@ -131,7 +129,7 @@ export class WebGPU {
 
 
         function frame() {
-            const colorData = new Float32Array([1, 0, 0, 1.0]); // Red color
+            const colorData = new Float32Array([1, 1, 0, 1.0]); // Red color
 
             // Create a GPU buffer for the color data
             const colorBuffer = _webGPU._device.createBuffer({
