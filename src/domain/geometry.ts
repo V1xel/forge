@@ -1,3 +1,7 @@
+export interface IGeometryParser {
+    parse()
+}
+
 export class Geometry { 
-    constructor(){}
+    constructor(source: string, parser: IGeometryParser){}
 }
