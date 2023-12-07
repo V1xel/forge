@@ -6,7 +6,7 @@ import { Output } from "./output"
 interface InputCollectionProps {
     nodeId: string,
     top: number,
-    elements: { title: string, type: (DataType | ValueType), hideHandle: boolean, onChange: (value: IValueType) => void }[]
+    elements: { title: string, type: (DataType | ValueType), hideHandle: boolean, onChange: (value: IDataType) => void }[]
 }
 
 export const InputCollection = ({ elements, nodeId, top }: InputCollectionProps) => {

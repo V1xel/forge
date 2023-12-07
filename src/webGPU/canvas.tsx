@@ -28,10 +28,12 @@ export class WebGPUCanvas {
 
 let _adapter: GPUAdapter
 let _device: GPUDevice
+let _format: GPUTextureFormat
 
 export class WebGPUDevice {
     public static async loadDevice(): Promise<WebGPUDevice> {
         const adapter = await navigator.gpu.requestAdapter()
+        _format = navigator.gpu.getPreferredCanvasFormat()
 
         if (!adapter)
             throw new Error()
@@ -45,7 +47,11 @@ export class WebGPUDevice {
         return _device
     }
 
-    public static getDevice(): GPUDevice {
+    public static get device(): GPUDevice {
         return _device
+    }
+
+    public static get format(): GPUTextureFormat {
+        return _format
     }
 }

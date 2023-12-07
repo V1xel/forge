@@ -21,6 +21,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["@webgpu/types"]
   },
-  "include": ["src"],
+  "include": ["src", "obj-type.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
