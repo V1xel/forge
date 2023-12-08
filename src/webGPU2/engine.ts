@@ -52,9 +52,10 @@ export class WebGPUEngine {
         this.device.submit([encoder.finish()])
     }
 
-    public loop(): number {
+    public loop(): () => void {
         this.draw()
+        const animationFrameId = requestAnimationFrame(this.loop)
 
-        return requestAnimationFrame(this.loop)
+        return () => cancelAnimationFrame(animationFrameId)
     }
 }
