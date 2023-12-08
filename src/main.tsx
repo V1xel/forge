@@ -4,10 +4,10 @@ import App from './app'
 import 'reactflow/dist/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-import { WebGPUDevice } from './webGPU/canvas';
+import { WebGPUDeviceLoader } from './webGPU2/wrappers/deviceLoader';
 
 const main = async () => {
-  await WebGPUDevice.loadDevice()
+  await WebGPUDeviceLoader.loadDevice()
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <App />

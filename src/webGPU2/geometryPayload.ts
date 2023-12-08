@@ -8,12 +8,12 @@ export class WebGPUGeometryPayload {
     constructor(private _geometry: Geometry) {
         this._verticesBuffer = WebGPUDeviceLoader.instance.createBuffer({
             size: _geometry._positions.byteLength,
-            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+            usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
         })
 
         this._indexesBuffer = WebGPUDeviceLoader.instance.createBuffer({
             size: _geometry._indices.byteLength,
-            usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+            usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
         })
 
         this._indecesLength = _geometry._indices.length

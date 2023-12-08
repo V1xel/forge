@@ -5,7 +5,7 @@ import { WebGPUDeviceLoader } from "./wrappers/deviceLoader";
 
 export class WebGPUShaderPayload {
     _color: Vector3;
-    _colorSize = 4 * 3
+    _colorSize = 4 * 4
     _transform: Matrix4;
     _transformSize = 4 * 4 * 4;
     _buffer: GPUBuffer;

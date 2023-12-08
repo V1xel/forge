@@ -23,7 +23,7 @@ export class WebGPUEngine {
         this.geometryPayload = new WebGPUGeometryPayload(geometry)
     }
 
-    private makeRenderPassDescriptor(): GPURenderPassDescriptor {
+    public makeRenderPassDescriptor(): GPURenderPassDescriptor {
         return {
             colorAttachments: [
                 {
@@ -36,7 +36,7 @@ export class WebGPUEngine {
         }
     }
 
-    private draw(): void {
+    public draw(): void {
         this.shaderPayload.writeToDevice()
         this.geometryPayload.writeToDevice()
 
@@ -54,7 +54,7 @@ export class WebGPUEngine {
 
     public loop(): () => void {
         this.draw()
-        const animationFrameId = requestAnimationFrame(this.loop)
+        const animationFrameId = requestAnimationFrame(this.loop.bind(this))
 
         return () => cancelAnimationFrame(animationFrameId)
     }

@@ -46,7 +46,7 @@ export class WebGPUDevice {
     }
 
     createCommandEncoder(): GPUCommandEncoder {
-        throw new Error("Method not implemented.");
+        return this.rawDevice.createCommandEncoder()
     }
 
     createBindGroup(descriptor: { layout: any; entries: { binding: number; resource: { buffer: any; }; }[]; }): GPUBindGroup {
