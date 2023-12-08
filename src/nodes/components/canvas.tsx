@@ -1,8 +1,9 @@
 import { useEffect } from "react"
-import { WebGPU } from '../../webGPU/engine'
+import { WebGPUEngine } from '../../webGPU/engine'
 import { IDataType } from "../../domain/dataType"
 import { Geometry } from "../../domain/geometry"
 import { WebGPUCanvas, WebGPUDevice } from "../../webGPU/canvas"
+import { Vector3 } from "../../domain/vector/vector3"
 
 export interface ICanvasProps {
     nodeId: string,
@@ -16,8 +17,9 @@ const MakeCanvasId = (nodeId: string) => `canvas-nodeId:${nodeId}`
 export const Canvas = ({ nodeId, geometry, color, shader }: ICanvasProps) => {
     useEffect(() => {
         const canvas = WebGPUCanvas.getCanvas(MakeCanvasId(nodeId))
-        const engine = new WebGPU()
-        const frame = engine.init(canvas, WebGPUDevice.device, WebGPUDevice.format, geometry as Geometry, shader)
+        const engine = new WebGPUEngine(WebGPUDevice.device, WebGPUDevice.format, geometry as Geometry,)
+        const frame = engine.init(shader, (color as Vector3).getVector().getValue())
+        engine.bindContext(canvas)
         
         const animationFrameId = frame()
         return () => cancelAnimationFrame(animationFrameId)
