@@ -17,7 +17,7 @@ const MakeCanvasId = (nodeId: string) => `canvas-nodeId:${nodeId}`
 export const Canvas = ({ nodeId, geometry, color, shader }: ICanvasProps) => {
     useEffect(() => {
         const canvas = WebGPUCanvas.getCanvas(MakeCanvasId(nodeId))
-        const engine = new WebGPUEngine(WebGPUDevice.device, WebGPUDevice.format, geometry as Geometry,)
+        const engine = new WebGPUEngine(WebGPUDevice.device, WebGPUDevice.format, geometry as Geometry)
         const frame = engine.init(shader, (color as Vector3).getVector().getValue())
         engine.bindContext(canvas)
         

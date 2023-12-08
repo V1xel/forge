@@ -17,10 +17,6 @@ export class WebGPUEngine {
         this._format = format
     }
 
-    initialize() {
-
-    }
-
     bindContext(canvas: WebGPUCanvas) {
         this._canvas = canvas
         this._context = this._canvas.getContext()
