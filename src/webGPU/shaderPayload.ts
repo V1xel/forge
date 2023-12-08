@@ -6,8 +6,10 @@ import { WebGPUDeviceLoader } from "./wrappers/deviceLoader";
 export class WebGPUShaderPayload {
     _color: Vector3;
     _colorSize = 4 * 4
+
     _transform: Matrix4;
     _transformSize = 4 * 4 * 4;
+
     _buffer: GPUBuffer;
     _pipeline: GPURenderPipeline
     constructor(pipeline: GPURenderPipeline, color: Vector3, transform: Matrix4) {
@@ -21,6 +23,27 @@ export class WebGPUShaderPayload {
     }
 
     getBindingGroup(): GPUBindGroup {
+   
+        const cubeTexture = WebGPUDeviceLoader.instance.createTexture({
+            size: [800, 800, 1],
+            format: 'rgba8unorm',
+            usage:
+                GPUTextureUsage.TEXTURE_BINDING |
+                GPUTextureUsage.COPY_DST |
+                GPUTextureUsage.RENDER_ATTACHMENT,
+        });
+
+        WebGPUDeviceLoader.instance.copyExternalImageToTexture(
+            { source: WebGPUDeviceLoader.image },
+            { texture: cubeTexture },
+            [800, 800]
+        );
+
+        const sampler = WebGPUDeviceLoader.instance.createSampler({
+            magFilter: 'linear',
+            minFilter: 'linear',
+        });
+
         return WebGPUDeviceLoader.instance.createBindGroup({
             layout: this._pipeline.getBindGroupLayout(0),
             entries: [
@@ -29,7 +52,15 @@ export class WebGPUShaderPayload {
                     resource: {
                         buffer: this._buffer,
                     },
-                }
+                },
+                {
+                    binding: 1,
+                    resource: sampler as any
+                },
+                {
+                    binding: 2,
+                    resource: cubeTexture.createView()
+                },
             ],
         })
     }
