@@ -53,7 +53,7 @@ export class WebGPUEngine {
         function getTransformationMatrix() {
             const viewMatrix = mat4.identity();
             mat4.translate(viewMatrix, vec3.fromValues(0, 0, -1.42), viewMatrix);
-
+            
             mat4.rotate(
                 viewMatrix,
                 vec3.fromValues(1, 0, 0),
