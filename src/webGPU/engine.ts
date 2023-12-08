@@ -25,14 +25,12 @@ export class WebGPUEngine {
 
     public makeRenderPassDescriptor(): GPURenderPassDescriptor {
         return {
-            colorAttachments: [
-                {
-                    view: this._canvas.createView(),
-                    clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 0 },
-                    loadOp: 'clear',
-                    storeOp: 'store',
-                },
-            ]
+            colorAttachments: [{
+                view: this._canvas.createView(),
+                clearValue: { r: 0.0, g: 0.0, b: 0.0, a: 0 },
+                loadOp: 'clear',
+                storeOp: 'store',
+            }]
         }
     }
 
