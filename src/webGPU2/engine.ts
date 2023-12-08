@@ -32,7 +32,7 @@ export class WebGPUEngine {
                     loadOp: 'clear',
                     storeOp: 'store',
                 },
-            ] as any
+            ]
         }
     }
 
