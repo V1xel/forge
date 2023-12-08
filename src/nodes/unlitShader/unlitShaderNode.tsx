@@ -10,7 +10,7 @@ import { Geometry } from "../../domain/geometry"
 import { ObjParser } from "../../utilities/objLoader"
 import { IDataType } from "../../domain/dataType"
 import plane from '../../../plane.obj?raw'
-import unlit from '../../webGPU2/shaders/unlit.wgsl?raw'
+import unlit from '../../webGPU/shaders/unlit.wgsl?raw'
 import { Matrix4 } from "../../domain/matrix/matrix4"
 import { Vector4 } from "../../domain/vector/vector4"
 

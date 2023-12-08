@@ -4,7 +4,7 @@ import App from './app'
 import 'reactflow/dist/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-import { WebGPUDeviceLoader } from './webGPU2/wrappers/deviceLoader';
+import { WebGPUDeviceLoader } from './webGPU/wrappers/deviceLoader';
 
 const main = async () => {
   await WebGPUDeviceLoader.loadDevice()
