@@ -9,7 +9,7 @@ import { Canvas } from "../components/canvas"
 import { Geometry } from "../../domain/geometry"
 import { ObjParser } from "../../utilities/objLoader"
 import { IDataType } from "../../domain/dataType"
-import plane from '../../../cube.obj?raw'
+import plane from '../../../plane.obj?raw'
 import unlit from '../../webGPU/shaders/unlit.wgsl?raw'
 import { Matrix4 } from "../../domain/matrix/matrix4"
 import { Vector4 } from "../../domain/vector/vector4"
@@ -26,7 +26,7 @@ export const UnlitShaderNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
                 <InputCollection top={70} nodeId={id} elements={[
                     { title: 'Color', type: ValueType.Vector3, hideHandle: false, onChange: setInputColor },
                 ]} />
-                <Canvas shader={unlit} geometry={geometry} color={colorVector3} nodeId={id} transform={new Matrix4(new Vector4(0, 0, -4.42, 0), new Vector4(1, 0.7, 0, 0), new Vector4(0, 0, 0, 0), new Vector4(0, 0, 0, 0))} />
+                <Canvas shader={unlit} geometry={geometry} color={colorVector3} nodeId={id} transform={new Matrix4(new Vector4(0, 0, -1.42, 0), new Vector4(1, 0, 0, 0), new Vector4(0, 0, 0, 0), new Vector4(0, 0, 0, 0))} />
             </Card.Body>
         </Card>
     );

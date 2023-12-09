@@ -5,7 +5,8 @@ export class ObjParser implements IGeometryParser {
 
     parse(objContent: string) {
         const positions: number[] = [];
-        const testPositions: number[] = [];
+
+        const uvMap: { [Id: string]: string } = {}
         const uvs: number[] = [];
         const normals: number[] = [];
         const indices: number[] = [];
@@ -29,9 +30,12 @@ export class ObjParser implements IGeometryParser {
                 case 'f':
                     //f 1/1/1 2/2/1 4/3/1 3/4/1
                     // vertex index/texture coordinate index/normal index
-                    const a = tokens[1].split('/')[0];
-                    const b = tokens[2].split('/')[0];
-                    const c = tokens[3].split('/')[0];
+                    const a = tokens[1].split('/')[0]
+                    uvMap[a] = tokens[1].split('/')[1]
+                    const b = tokens[2].split('/')[0]
+                    uvMap[b] = tokens[2].split('/')[1]
+                    const c = tokens[3].split('/')[0]
+                    uvMap[c] = tokens[3].split('/')[1]
 
                     if (tokens.length === 4) {
                         indices.push(parseInt(a) - 1);
@@ -40,6 +44,7 @@ export class ObjParser implements IGeometryParser {
                     }
                     if (tokens.length === 5) {
                         const d = tokens[4].split('/')[0];
+                        uvMap[d] = tokens[4].split('/')[1]
 
                         indices.push(parseInt(a) - 1);
                         indices.push(parseInt(b) - 1);
@@ -50,33 +55,26 @@ export class ObjParser implements IGeometryParser {
                         indices.push(parseInt(a) - 1);
                     }
 
-                    const mixPositionsAndUVs = ([vertexId, vertexTextureCoordinateId]: any[]) => {
-                        const parsedVertexAId = (parseInt(vertexId) - 1) * 3
-                        const parsedVertexTextureCoordinateId = (parseInt(vertexTextureCoordinateId) - 1) * 2
-
-                        const x = positions[parsedVertexAId]
-                        const y = positions[parsedVertexAId + 1]
-                        const z = positions[parsedVertexAId + 2]
-                        // console.log(x + ' ' + y + " " + z)
-                        const avtX = uvs[parsedVertexTextureCoordinateId]
-                        const avtY = uvs[parsedVertexTextureCoordinateId + 1]
-
-                        testPositions.push(x, y, z, avtX, 1 - avtY) // hack for inverting Y, maybe i don't have to do it
-                    }
-
-                    mixPositionsAndUVs(tokens[1].split('/'))
-                    mixPositionsAndUVs(tokens[2].split('/'))
-                    mixPositionsAndUVs(tokens[3].split('/'))
-                    if (tokens.length === 5) {
-                        mixPositionsAndUVs(tokens[4].split('/'))
-                    }
-
                     break;
                 case "o":
                     name = tokens[1];
                     break;
             }
         });
+        const testPositions: number[] = [];
+        let vindex = 0
+        for (let index = 0; index < positions.length; index = index + 3) {
+            vindex++
+            const x = positions[index];
+            const y = positions[index + 1];
+            const z = positions[index + 2];
+            const uv0 = uvs[Number(uvMap[vindex])]
+            const uv1 = uvs[Number(uvMap[vindex] + 1)]
+
+            testPositions.push(x, y, z, uv0, uv1)
+        }
+
+
 
         const positionsArray = new Float32Array(testPositions);
         const uvsArray = new Float32Array(uvs);
