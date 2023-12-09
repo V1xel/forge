@@ -17,8 +17,10 @@ import { Vector4 } from "../../domain/vector/vector4"
 export const UnlitShaderNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
     const geometry = new Geometry(plane, ObjParser.Instance) as IDataType
     const [colorVector3, setColorVector3] = useState(new Vector3(0, 0, 0) as IDataType)
+    const [matrix, setMatrix] = useState(new Matrix4(new Vector4(0, 0, -1.42, 0), new Vector4(1, 0, 0, 0), new Vector4(0, 0, 0, 0), new Vector4(0, 0, 0, 0)) as IDataType)
 
     const setInputColor = (value: IDataType) => { setColorVector3(value) }
+
     return (
         <Card data-bs-theme={'dark'} >
             <Card.Header>Unlit Shader</Card.Header>
@@ -26,7 +28,7 @@ export const UnlitShaderNode: ComponentType<NodeProps<NodeData>> = ({ id }) => {
                 <InputCollection top={70} nodeId={id} elements={[
                     { title: 'Color', type: ValueType.Vector3, hideHandle: false, onChange: setInputColor },
                 ]} />
-                <Canvas shader={unlit} geometry={geometry} color={colorVector3} nodeId={id} transform={new Matrix4(new Vector4(0, 0, -1.42, 0), new Vector4(1, 0, 0, 0), new Vector4(0, 0, 0, 0), new Vector4(0, 0, 0, 0))} />
+                <Canvas shader={unlit} geometry={geometry} color={colorVector3} nodeId={id} transform={matrix} />
             </Card.Body>
         </Card>
     );

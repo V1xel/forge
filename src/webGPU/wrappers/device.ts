@@ -51,6 +51,12 @@ export class WebGPUDevice {
                                 offset: 0,
                                 format: 'float32x3',
                             },
+                            {
+                                // position
+                                shaderLocation: 1,
+                                offset: 12,
+                                format: 'float32x2',
+                            },
                         ],
                     },
                 ],

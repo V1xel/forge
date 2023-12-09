@@ -68,13 +68,12 @@ export class ObjParser implements IGeometryParser {
             const x = positions[index];
             const y = positions[index + 1];
             const z = positions[index + 2];
-            const uv0 = uvs[Number(uvMap[vindex])]
-            const uv1 = uvs[Number(uvMap[vindex] + 1)]
+         
+            const uv0 = uvs[Number(uvMap[vindex]) - 1]
+            const uv1 = uvs[Number(uvMap[vindex])]
 
             testPositions.push(x, y, z, uv0, uv1)
         }
-
-
 
         const positionsArray = new Float32Array(testPositions);
         const uvsArray = new Float32Array(uvs);
