@@ -5,6 +5,7 @@ export class WebGPUGeometryPayload {
     _verticesBuffer: GPUBuffer
     _indexesBuffer: GPUBuffer
     _indecesLength: number
+    _verticesLength: number
     constructor(private _geometry: Geometry) {
         this._verticesBuffer = WebGPUDeviceLoader.instance.createBuffer({
             size: _geometry._positions.byteLength,
@@ -16,6 +17,7 @@ export class WebGPUGeometryPayload {
             usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
         })
 
+        this._verticesLength = _geometry._positions.length
         this._indecesLength = _geometry._indices.length
     }
 
@@ -29,6 +31,10 @@ export class WebGPUGeometryPayload {
 
     public get indecesLength(): number {
         return this._indecesLength
+    }
+
+    public get verticesLength(): number {
+        return this._verticesLength
     }
 
     public writeToDevice() {

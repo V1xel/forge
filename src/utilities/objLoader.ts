@@ -5,6 +5,7 @@ export class ObjParser implements IGeometryParser {
 
     parse(objContent: string) {
         const positions: number[] = [];
+        const testPositions: number[] = [];
         const uvs: number[] = [];
         const normals: number[] = [];
         const indices: number[] = [];
@@ -32,21 +33,42 @@ export class ObjParser implements IGeometryParser {
                     const b = tokens[2].split('/')[0];
                     const c = tokens[3].split('/')[0];
 
-                    if (tokens.length > 3) {
+                    if (tokens.length === 4) {
                         indices.push(parseInt(a) - 1);
                         indices.push(parseInt(b) - 1);
                         indices.push(parseInt(c) - 1);
                     }
-                    if (tokens.length > 4) {
+                    if (tokens.length === 5) {
                         const d = tokens[4].split('/')[0];
 
                         indices.push(parseInt(a) - 1);
                         indices.push(parseInt(b) - 1);
-                        indices.push(parseInt(d) - 1);
+                        indices.push(parseInt(c) - 1);
 
                         indices.push(parseInt(c) - 1);
                         indices.push(parseInt(d) - 1);
                         indices.push(parseInt(a) - 1);
+                    }
+
+                    const mixPositionsAndUVs = ([vertexId, vertexTextureCoordinateId]: any[]) => {
+                        const parsedVertexAId = (parseInt(vertexId) - 1) * 3
+                        const parsedVertexTextureCoordinateId = (parseInt(vertexTextureCoordinateId) - 1) * 2
+
+                        const x = positions[parsedVertexAId]
+                        const y = positions[parsedVertexAId + 1]
+                        const z = positions[parsedVertexAId + 2]
+                        // console.log(x + ' ' + y + " " + z)
+                        const avtX = uvs[parsedVertexTextureCoordinateId]
+                        const avtY = uvs[parsedVertexTextureCoordinateId + 1]
+
+                        testPositions.push(x, y, z, avtX, 1 - avtY) // hack for inverting Y, maybe i don't have to do it
+                    }
+
+                    mixPositionsAndUVs(tokens[1].split('/'))
+                    mixPositionsAndUVs(tokens[2].split('/'))
+                    mixPositionsAndUVs(tokens[3].split('/'))
+                    if (tokens.length === 5) {
+                        mixPositionsAndUVs(tokens[4].split('/'))
                     }
 
                     break;
@@ -56,7 +78,7 @@ export class ObjParser implements IGeometryParser {
             }
         });
 
-        const positionsArray = new Float32Array(positions);
+        const positionsArray = new Float32Array(testPositions);
         const uvsArray = new Float32Array(uvs);
         const normalsArray = new Float32Array(normals);
         const paddedSize = Math.ceil(indices.length * 2 / 4) * 4;
