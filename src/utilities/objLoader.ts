@@ -61,19 +61,8 @@ export class ObjParser implements IGeometryParser {
                     break;
             }
         });
-        const testPositions: number[] = [];
-        let vindex = 0
-        for (let index = 0; index < positions.length; index = index + 3) {
-            vindex = vindex + 1
-            const x = positions[index];
-            const y = positions[index + 1];
-            const z = positions[index + 2];
 
-            const id = (Number(uvMap[vindex]) - 1) * 2
-            testPositions.push(x, y, z, uvs[id], 1 - uvs[id + 1])
-        }
-
-        const positionsArray = new Float32Array(testPositions);
+        const positionsArray = new Float32Array(positions);
         const uvsArray = new Float32Array(uvs);
         const normalsArray = new Float32Array(normals);
         const paddedSize = Math.ceil(indices.length * 2 / 4) * 4;

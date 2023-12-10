@@ -43,19 +43,13 @@ export class WebGPUDevice {
                 entryPoint: 'mainVertex',
                 buffers: [
                     {
-                        arrayStride: 20,
+                        arrayStride: 12,
                         attributes: [
                             {
                                 // position
                                 shaderLocation: 0,
                                 offset: 0,
                                 format: 'float32x3',
-                            },
-                            {
-                                // position
-                                shaderLocation: 1,
-                                offset: 12,
-                                format: 'float32x2',
                             },
                         ],
                     },
