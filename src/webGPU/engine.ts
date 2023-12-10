@@ -19,7 +19,7 @@ export class WebGPUEngine {
 
     public initialize(geometry: Geometry, shader: string, { color, transform }: { color: Vector3, transform: Matrix4 }) {
         this.pipeline = this.device.createRenderPipeline(shader)
-        this.shaderPayload = new WebGPUShaderPayload(this.pipeline, color, transform)
+        this.shaderPayload = new WebGPUShaderPayload(this.pipeline, color, transform, geometry)
         this.geometryPayload = new WebGPUGeometryPayload(geometry)
     }
 
@@ -43,6 +43,8 @@ export class WebGPUEngine {
         passEncoder.setPipeline(this.pipeline)
         passEncoder.setBindGroup(0, this.shaderPayload.getBindingGroup())
         passEncoder.setVertexBuffer(0, this.geometryPayload.verticesBuffer)
+        passEncoder.setVertexBuffer(1, this.geometryPayload.normalsBuffer)
+        passEncoder.setVertexBuffer(2, this.geometryPayload.uvsBuffer)
         passEncoder.setIndexBuffer(this.geometryPayload.indexesBuffer, 'uint16')
         passEncoder.drawIndexed(this.geometryPayload.indecesLength)
         passEncoder.end()

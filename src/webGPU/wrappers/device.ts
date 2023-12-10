@@ -29,6 +29,11 @@ export class WebGPUDevice {
                             visibility: GPUShaderStage.FRAGMENT,
                             texture: { sampleType: 'float', viewDimension: '2d', multisampled: false }, // Use texture field for texture
                         },
+                        {
+                            binding: 3,
+                            visibility: GPUShaderStage.VERTEX,
+                            buffer: { type: 'read-only-storage' }
+                        }
                     ],
                 })
             ],
@@ -43,7 +48,7 @@ export class WebGPUDevice {
                 entryPoint: 'mainVertex',
                 buffers: [
                     {
-                        arrayStride: 12,
+                        arrayStride: 32,
                         attributes: [
                             {
                                 // position
@@ -51,6 +56,17 @@ export class WebGPUDevice {
                                 offset: 0,
                                 format: 'float32x3',
                             },
+                            {
+                                // position
+                                shaderLocation: 1,
+                                offset: 12,
+                                format: 'float32x3',
+                            },
+                            {
+                                shaderLocation: 2,
+                                offset: 24,
+                                format: 'uint32',
+                            }
                         ],
                     },
                 ],
@@ -68,7 +84,7 @@ export class WebGPUDevice {
             },
             primitive: {
                 topology: 'triangle-list',
-                cullMode: 'back',
+                cullMode: 'none',
             }
         });
     }

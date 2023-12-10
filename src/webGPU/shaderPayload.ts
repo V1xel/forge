@@ -1,3 +1,4 @@
+import { Geometry } from "../domain/geometry";
 import { Matrix4 } from "../domain/matrix/matrix4";
 import { Vector3 } from "../domain/vector/vector3";
 import { TransformationMatrix } from "./helpers/transformationMatrix";
@@ -10,9 +11,10 @@ export class WebGPUShaderPayload {
     _transform: Matrix4;
     _transformSize = 4 * 4 * 4;
 
-    _buffer: GPUBuffer;
+    _uvsBuffer: GPUBuffer
+    _buffer: GPUBuffer
     _pipeline: GPURenderPipeline
-    constructor(pipeline: GPURenderPipeline, color: Vector3, transform: Matrix4) {
+    constructor(pipeline: GPURenderPipeline, color: Vector3, transform: Matrix4, private _geometry: Geometry) {
         this._pipeline = pipeline
         this._color = color
         this._transform = transform
@@ -20,10 +22,15 @@ export class WebGPUShaderPayload {
             size: this._colorSize + this._transformSize,
             usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
         })
+
+        this._uvsBuffer = WebGPUDeviceLoader.instance.createBuffer({
+            size: _geometry._uvs.byteLength,
+            usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+        })
     }
 
     getBindingGroup(): GPUBindGroup {
-   
+
         const cubeTexture = WebGPUDeviceLoader.instance.createTexture({
             size: [800, 800, 1],
             format: 'rgba8unorm',
@@ -61,6 +68,12 @@ export class WebGPUShaderPayload {
                     binding: 2,
                     resource: cubeTexture.createView()
                 },
+                {
+                    binding: 3,
+                    resource: {
+                        buffer: this._uvsBuffer
+                    }
+                }
             ],
         })
     }
@@ -72,5 +85,7 @@ export class WebGPUShaderPayload {
         const { x, y, z } = this._color.getValue()
         const color = new Float32Array([x, y, z, 1.0]);
         WebGPUDeviceLoader.instance.writeBuffer(this._buffer, this._transformSize, color.buffer, color.byteOffset, color.byteLength)
+
+        WebGPUDeviceLoader.instance.writeBuffer(this._uvsBuffer, 0, this._geometry._uvs)
     }
 }
