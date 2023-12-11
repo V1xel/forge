@@ -6,7 +6,7 @@ export interface IGeometryParser {
         positions: Float32Array;
         uvs: Float32Array;
         normals: Float32Array;
-        indices: Uint16Array;
+        indices: Uint32Array;
         uvIndexes: Uint32Array;
     }
 }
@@ -16,7 +16,7 @@ export class Geometry implements IDataType {
     _positions: Float32Array;
     _uvs: Float32Array;
     _normals: Float32Array;
-    _indices: Uint16Array;
+    _indices: Uint32Array;
     _uvIndexes: Uint32Array;
     constructor(source: string, parser: IGeometryParser) {
         const { name, positions, uvs, normals, indices, uvIndexes } = parser.parse(source)

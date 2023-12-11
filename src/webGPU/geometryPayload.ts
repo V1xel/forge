@@ -4,7 +4,7 @@ import { WebGPUDeviceLoader } from "./wrappers/deviceLoader";
 export class WebGPUGeometryPayload {
     _verticesBuffer: GPUBuffer
     _normalsBuffer: GPUBuffer
-    _uvsBuffer: GPUBuffer
+    _uvIndexesBuffer: GPUBuffer
     _indexesBuffer: GPUBuffer
     _indecesLength: number
     _verticesLength: number
@@ -19,7 +19,7 @@ export class WebGPUGeometryPayload {
             usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
         })
 
-        this._uvsBuffer = WebGPUDeviceLoader.instance.createBuffer({
+        this._uvIndexesBuffer = WebGPUDeviceLoader.instance.createBuffer({
             size: _geometry._uvIndexes.byteLength,
             usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
         })
@@ -46,8 +46,8 @@ export class WebGPUGeometryPayload {
         return this._normalsBuffer
     }
 
-    public get uvsBuffer(): GPUBuffer {
-        return this._uvsBuffer
+    public get uvIndexesBuffer(): GPUBuffer {
+        return this._uvIndexesBuffer
     }
 
     public get indexesBuffer(): GPUBuffer {
@@ -65,7 +65,7 @@ export class WebGPUGeometryPayload {
     public writeToDevice() {
         WebGPUDeviceLoader.instance.writeBuffer(this._verticesBuffer, 0, this._geometry._positions)
         WebGPUDeviceLoader.instance.writeBuffer(this._normalsBuffer, 0, this._geometry._normals)
-        WebGPUDeviceLoader.instance.writeBuffer(this._uvsBuffer, 0, this._geometry._uvIndexes)
+        WebGPUDeviceLoader.instance.writeBuffer(this._uvIndexesBuffer, 0, this._geometry._uvIndexes)
         WebGPUDeviceLoader.instance.writeBuffer(this._indexesBuffer, 0, this._geometry._indices)
     }
 }

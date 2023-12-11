@@ -5,7 +5,7 @@ struct Uniforms {
 @group(0) @binding(0) var<uniform> uniforms : Uniforms;
 @group(0) @binding(1) var mySampler : sampler;
 @group(0) @binding(2) var myTexture : texture_2d<f32>;
-@group(0) @binding(3) var<storage, read> myStorage : array<vec2<f32>>;
+@group(0) @binding(3) var<storage, read> uvStorage : array<vec2<f32>>;
 
 struct VertexOutput {
   @builtin(position) Position : vec4 < f32>,
@@ -14,14 +14,15 @@ struct VertexOutput {
 }
 
 @vertex fn mainVertex(
+@builtin(vertex_index) index: u32,
 @location(0) position : vec4 < f32>,
 @location(1) normal : vec3 < f32>,
-@location(2) uv : u32,
+@location(2) uvIndex : u32,
 ) -> VertexOutput {
   var output : VertexOutput;
   output.Position = uniforms.modelViewProjectionMatrix * position;
-  output.fragUV = myStorage[uv];
-  output.fragPosition = position;
+  output.fragUV = uvStorage[uvIndex];
+
   return output;
 }
 

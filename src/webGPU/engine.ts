@@ -44,8 +44,8 @@ export class WebGPUEngine {
         passEncoder.setBindGroup(0, this.shaderPayload.getBindingGroup())
         passEncoder.setVertexBuffer(0, this.geometryPayload.verticesBuffer)
         passEncoder.setVertexBuffer(1, this.geometryPayload.normalsBuffer)
-        passEncoder.setVertexBuffer(2, this.geometryPayload.uvsBuffer)
-        passEncoder.setIndexBuffer(this.geometryPayload.indexesBuffer, 'uint16')
+        passEncoder.setVertexBuffer(2, this.geometryPayload.uvIndexesBuffer)
+        passEncoder.setIndexBuffer(this.geometryPayload.indexesBuffer, 'uint32')
         passEncoder.drawIndexed(this.geometryPayload.indecesLength)
         passEncoder.end()
 

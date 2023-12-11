@@ -48,7 +48,7 @@ export class WebGPUDevice {
                 entryPoint: 'mainVertex',
                 buffers: [
                     {
-                        arrayStride: 32,
+                        arrayStride: 12,
                         attributes: [
                             {
                                 // position
@@ -56,15 +56,25 @@ export class WebGPUDevice {
                                 offset: 0,
                                 format: 'float32x3',
                             },
+                        ],
+                    },
+                    {
+                        arrayStride: 12,
+                        attributes: [
                             {
                                 // position
                                 shaderLocation: 1,
-                                offset: 12,
+                                offset: 0,
                                 format: 'float32x3',
-                            },
+                            }
+                        ],
+                    },
+                    {
+                        arrayStride: 4,
+                        attributes: [
                             {
                                 shaderLocation: 2,
-                                offset: 24,
+                                offset: 0,
                                 format: 'uint32',
                             }
                         ],
@@ -84,7 +94,7 @@ export class WebGPUDevice {
             },
             primitive: {
                 topology: 'triangle-list',
-                cullMode: 'none',
+                cullMode: 'back',
             }
         });
     }
