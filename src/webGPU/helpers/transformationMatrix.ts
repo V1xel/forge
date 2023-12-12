@@ -20,6 +20,7 @@ export class TransformationMatrix {
         mat4.rotate(
             viewMatrix,
             vec3.fromValues(rotation.x, rotation.y, rotation.z),//x:1
+           // vec3.fromValues(Math.cos(Date.now()/1000), Math.sin(Date.now()/1000), Math.sin(Date.now()/1000)),//x:1
             1.5708,
             viewMatrix
         );

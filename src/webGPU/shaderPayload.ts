@@ -32,7 +32,7 @@ export class WebGPUShaderPayload {
     getBindingGroup(): GPUBindGroup {
 
         const cubeTexture = WebGPUDeviceLoader.instance.createTexture({
-            size: [800, 800, 1],
+            size: [1024, 1024, 1],
             format: 'rgba8unorm',
             usage:
                 GPUTextureUsage.TEXTURE_BINDING |
@@ -43,7 +43,7 @@ export class WebGPUShaderPayload {
         WebGPUDeviceLoader.instance.copyExternalImageToTexture(
             { source: WebGPUDeviceLoader.image },
             { texture: cubeTexture },
-            [800, 800]
+            [1024, 1024]
         );
 
         const sampler = WebGPUDeviceLoader.instance.createSampler({

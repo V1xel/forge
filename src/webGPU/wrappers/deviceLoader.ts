@@ -1,5 +1,5 @@
 import { WebGPUDevice } from "./device"
-import girafe from '/1644699984354.jpg'
+import girafe from '/Cube.png'
 
 let _deviceWrapper: WebGPUDevice
 let bitmap: ImageBitmap
