@@ -24,9 +24,9 @@ struct VertexOutput {
   output.fragUV = uvStorage[uvIndex];
 
   output.fragPosition = vec4(1, 1, 1, 1);
-  if(uvStorage[uvIndex].x > 0.624)
+  if(uvIndex == 11)
   {
-   // output.fragPosition = vec4(1, 0, 0, 1);
+    output.fragPosition = vec4(1, 0, 0, 1);
   }
 
   return output;

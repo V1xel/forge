@@ -77,22 +77,41 @@ export class ObjParser implements IGeometryParser {
             }
         });
 
-       // localUVs.sort((a, b) => a.vid - b.vid);
-       // localUVs.sort((a, b) => a.lid - b.lid);
-        //  localUVs.sort((a, b) => a.uv1 - b.uv1)
-
+        // localUVs.sort((a, b) => a.vid - b.vid);
+        // localUVs.sort((a, b) => a.lid - b.lid);
+        // localUVs.sort((a, b) => a.uv1 - b.uv1)
+        console.log('hey')
+        console.log(localUVs)
         for (const uv of localUVs) {
             indexedUvs.push(uv.tid)
         }
 
         //f 3/1/1 4/2/1 2/3/1 1/4/1
         //f 6/5/1 3/1/1 1/4/1 5/6/1
-       // indexedUvs = [3, 2, 0, 1, 5, 4]
+        // indexedUvs = [3, 2, 0, 1, 5, 4]
 
-        //f 6/1/1 4/2/1 3/3/1 2/4/1
-        //f 5/5/1 6/1/1 2/4/1 1/6/1
-        //f 8/7/1 5/5/1 1/6/1 7/8/1
-        indexedUvs = [5, 3, 2, 1, 4, 0, 7, 6]
+        //f 5/0 3/1 2/2 1/3
+        //f 4/4 5/0 1/3 0/5
+        //f 7/6 4/4 0/5 6/7
+        // indexedUvs = [
+        //     5, 3, 2, 1,
+        //     4, 0, 7, 6,
+        // ]
+        // indexedUvs = [5, 3, 2, 1, 4, 0, 7, 6]
+
+        // f 3/1/1 4/2/1 2/3/1 1/4/1
+        // f 5/5/1 6/6/1 10/7/1 9/8/1
+        // f 10/7/1 8/9/1 7/10/1 4/2/1
+        // f 9/8/1 10/7/1 4/2/1 3/1/1
+        // f 12/11/1 9/8/1 3/1/1 11/12/1
+        indexedUvs = [
+            0, 1, 
+            2, 3,
+            4, 5, 
+            6, 7,
+            8, 9, 
+            10, 11,
+        ]
 
         // uvs = [
         //     0.375, 0,
